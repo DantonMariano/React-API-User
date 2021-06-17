@@ -1,0 +1,18 @@
+#userinfo p{
+  margin: 2px;
+}
+.card-image{
+  width: 90%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.card{
+  text-align: start;
+  border-radius: 20px;
+  box-shadow: 0 2px 13px rgba(0,0,0,0.2);
+}
