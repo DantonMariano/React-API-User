@@ -3,12 +3,16 @@ import axios from "axios";
 import "./styles.css";
 export default function App() {
   let [nome, setNome] = useState(false);
+  let [status, setStatus] = useState(false);
 
   useEffect(() => {
     console.log(nome);
   }, [nome]);
 
   const usaApi = () => {
+
+    setStatus(true);
+
     axios
       .get("https://randomuser.me/api")
       .then((response) => {
@@ -16,6 +20,7 @@ export default function App() {
       })
       .then((user) => {
         setNome(user);
+        setStatus(false);
       });
   };
 
@@ -24,12 +29,12 @@ export default function App() {
       <div className="row">
         <div align="center" className="col">
           <br />
-          <button onClick={usaApi} className='btn btn-primary'><i class="fas fa-user" style={{marginRight: '7px'}}></i> Carregar Usuário! </button>
+          <button onClick={usaApi} className='btn btn-primary'><i class="fas fa-user" style={{ marginRight: '7px' }}></i> Carregar Usuário! </button>
           <div id="userinfo">
             <br />
-            {nome && (
+            {nome && !status && (
               <>
-                <div className="card mb-3" style={{maxWidth: '540px'}}>
+                <div className="card mb-3" style={{ maxWidth: '540px' }}>
                   <div className="row g-0">
                     <div className="col-md-4">
                       <img className='card-image' src={nome.picture.large} alt="foto" />
@@ -43,7 +48,19 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-                
+
+              </>
+            )}
+            {status && (
+              <>
+                <div>
+                  <br />
+                  <br />
+                  <i class="fas fa-spinner"></i>
+                  <br />
+                  <br />
+                  loading...
+                </div>
               </>
             )}
           </div>
